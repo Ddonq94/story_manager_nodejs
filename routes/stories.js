@@ -9,6 +9,7 @@ const {
   update,
   destroy,
   show,
+  userStories,
 } = require("../controllers/index");
 
 // show add page
@@ -31,5 +32,8 @@ router.put("/:id", ensureAuth, update);
 
 // delete page
 router.delete("/:id", ensureAuth, destroy);
+
+// get stories by user
+router.get("/user/:id", ensureAuth, userStories);
 
 module.exports = router;

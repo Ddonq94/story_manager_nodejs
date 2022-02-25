@@ -99,4 +99,18 @@ module.exports = {
       catchHandler();
     }
   },
+  userStories: async (req, res) => {
+    try {
+      const stories = await Story.find({
+        status: "public",
+        user: req.params.id,
+      })
+        .populate("user")
+        .sort({ createdAt: "desc" })
+        .lean();
+      res.render("stories/index", { stories });
+    } catch (error) {
+      catchHandler();
+    }
+  },
 };
