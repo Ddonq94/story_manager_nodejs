@@ -1,0 +1,36 @@
+<h6>Dashboard</h6>
+<h3>Welcome {{name}}</h3>
+<p>See your stories below</p>
+{{#if stories}}
+
+  <div class="row">
+    {{#each stories}}
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-content grey-text darken-3">
+            <span class="card-title"><a
+                href="/stories/{{_id}}"
+              >{{title}}</a><small> ({{status}})</small></span>
+            <p>{{formatDate createdAt "HH:mm:ss DD-MMM-YY"}}</p>
+          </div>
+          <div class="card-action buttons">
+            <a class="btn" href="/stories/edit/{{_id}}">
+              <i class="fas fa-edit"></i>
+            </a>
+            <form action="/stories/{{_id}}" method="POST" id="delete-form">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit" class="btn red">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+{{else}}
+
+  <p>You do not have any Stories... Yet</p>
+
+{{/if}}
